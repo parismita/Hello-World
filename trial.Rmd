@@ -1,0 +1,37 @@
+---
+title: "This is a Trial of Vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{This is a Trial of Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+content
+The first tool we'll use is `dplyr::location()`. It tells us the memory location of three components of a data frame object:
+
+* the data frame itself
+* each column
+* each attribute
+
+dplyr is equally smart:
+
+```{r}
+iris3 <- mutate(iris, Sepal.Length = Sepal.Length * 2)
+changes(iris3, iris)
+```
+
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(collapse = T, comment = "#>")
+options(tibble.print_min = 4L, tibble.print_max = 4L)
+library(dplyr)
+```
+
+* `arrange()` must always copy all columns because you're changing the order of every one.
+  This is an expensive operation for big data, but you can generally avoid
+  it using the order argument to [window functions](window-functions.html)
+
+Suggests: knitr, rmarkdown
+
+VignetteBuilder: knitr
